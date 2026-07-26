@@ -69,43 +69,11 @@ const Create = () => {
         }
     })
 
-     const teachers = [
-        {
-            id: "1",
-            name: "John Doe",
-        },
-        {
-            id: "2",
-            name: "Jane Smith",
-        },
-        {
-            id: "3",
-            name: "Dr. Alan Turing",
-        },
-    ];
+    const subjects = subjectsQuery?.data?.data || [];
+    const subjectsLoading = subjectsQuery.isLoading;
 
-    const subjects = [
-        {
-            id: 1,
-            name: "Mathematics",
-            code: "MATH",
-        },
-        {
-            id: 2,
-            name: "Computer Science",
-            code: "CS",
-        },
-        {
-            id: 3,
-            name: "Physics",
-            code: "PHY",
-        },
-        {
-            id: 4,
-            name: "Chemistry",
-            code: "CHEM",
-        },
-    ];
+    const teachers = teachersQuery?.data?.data || [];
+    const teachersLoading = teachersQuery.isLoading
 
 
     const bannerPublicId = form.watch('bannerCldPubId');
@@ -204,6 +172,7 @@ const Create = () => {
                                                         field.onChange(Number(value))
                                                     }
                                                     value={field.value?.toString()}
+                                                    disabled={subjectsLoading}
 
                                                 >
                                                     <FormControl>
@@ -238,6 +207,7 @@ const Create = () => {
                                                 <Select
                                                     onValueChange={field.onChange}
                                                     value={field.value}
+                                                    disabled={teachersLoading}
 
                                                 >
                                                     <FormControl>
